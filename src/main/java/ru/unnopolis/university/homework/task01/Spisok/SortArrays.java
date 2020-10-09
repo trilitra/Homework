@@ -3,14 +3,14 @@ package ru.unnopolis.university.homework.task01.Spisok;
 import java.util.Arrays;
 
 /**
- * Class SortArrays
+ * Класс реализующий сортировку Arrays.sort и выводящий в консоль время работы алгоритма сортировки
  */
 
 class SortArrays {
     /**
-     * Method Sorting
+     * Метод в котором реализуется сортировка Arrays.sort, и замер времени работы алгоритма сортировки
      *
-     * @param massiv transmitted
+     * @param massiv принимает для сортировки массив объектов класса Person
      */
     static void sort(Person[] massiv) {
 

@@ -5,15 +5,15 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Class Array
+ * Класс рандомно генерирующий массив из объектов класса Person
  */
 class Massiv {
     /**
      * Method Generate Array
      *
-     * @param length transmitted
-     * @return massiv returned
-     * @throws PersonException included
+     * @param length принимает переменную, которая задает длину генерируемого массива
+     * @return massiv возвращает сгенерированный массив заданной длины
+     * @throws PersonException пробрасывает исключение в клас Main если генерируются абсолютно одинаковые объекты Person
      */
     static Person[] generate(int length) throws PersonException {
         Random rand = new Random();

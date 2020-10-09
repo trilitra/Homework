@@ -6,13 +6,15 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Class SortCollections
+ * CКласс реализующий сортировку Collections.sort и выводящий в консоль время работы алгоритма сортировки,
+ * а также отсортированный массив объектов класса Person
  */
 class SortCollections {
     /**
-     * Method Sorting
+     * Метод в котором реализуется сортировка Collections.sort, вывод в консоль отсортированного массива объектов
+     * класса Person и замер времени работы алгоритма сортировки
      *
-     * @param massiv transmitted
+     * @param massiv принимает для сортировки массив объектов класса Person
      */
     static void sort(Person[] massiv) {
         List<Person> list = new ArrayList<Person>(Arrays.asList(massiv));
