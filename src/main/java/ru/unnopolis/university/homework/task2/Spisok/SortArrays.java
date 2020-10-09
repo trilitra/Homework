@@ -2,8 +2,17 @@ package ru.unnopolis.university.homework.task2.Spisok;
 
 import java.util.Arrays;
 
-public class SortArrays {
-    public static void sort(Person[] massiv) {
+/**
+ * Class SortArrays
+ */
+
+class SortArrays {
+    /**
+     * Method Sorting
+     *
+     * @param massiv transmitted
+     */
+    static void sort(Person[] massiv) {
 
         long startTime = System.currentTimeMillis();
 

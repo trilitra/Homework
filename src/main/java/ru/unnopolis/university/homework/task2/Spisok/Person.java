@@ -1,18 +1,21 @@
 package ru.unnopolis.university.homework.task2.Spisok;
 
+/**
+ * Class Person
+ */
 public class Person {
-    public String name;
-    public int age;
-    public String sex;
+    private String name;
+    private int age;
+    private String sex;
 
 
-    public Person(String name, int age, String sex) {
+    Person(String name, int age, String sex) {
         this.name = name;
         this.age = age;
         this.sex = sex;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
@@ -20,7 +23,7 @@ public class Person {
         this.name = name;
     }
 
-    public int getAge() {
+    int getAge() {
         return age;
     }
 
@@ -28,7 +31,7 @@ public class Person {
         this.age = age;
     }
 
-    public String getSex() {
+    String getSex() {
         return sex;
     }
 

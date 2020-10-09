@@ -3,6 +3,9 @@ package ru.unnopolis.university.homework.task2;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Class Generate Random Number
+ */
 public class Generator {
     public static void main(String[] args) {
         System.out.println("Введите количество чисел, которое хотите сгенерировать");

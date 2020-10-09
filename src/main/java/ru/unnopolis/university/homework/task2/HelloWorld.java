@@ -1,5 +1,8 @@
 package ru.unnopolis.university.homework.task2;
 
+/**
+ * Class User Example Exception
+ */
 public class HelloWorld {
     public static void main(String[] args) {
         try {
