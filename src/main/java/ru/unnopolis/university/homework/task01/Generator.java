@@ -1,4 +1,4 @@
-package ru.unnopolis.university.homework.task2;
+package ru.unnopolis.university.homework.task01;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

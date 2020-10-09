@@ -1,4 +1,4 @@
-package ru.unnopolis.university.homework.task2.Spisok;
+package ru.unnopolis.university.homework.task01.Spisok;
 
 /**
  * Class Main
