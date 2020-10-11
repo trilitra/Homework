@@ -4,15 +4,14 @@ package ru.unnopolis.university.homework.task01.Spisok;
  * Главный класс выполняющий следующую задачу :
  * Генерация массива объектов Person. Класс Person характеризуется полями age (возраст, целое число 0-100),
  * sex (пол – объект класса Sex со строковыми константами внутри MAN, WOMAN),
- * name (имя - строка). Создано два класса: SortCollections и SortArrays, методы которых будут
+ * name (имя - строка). Создано два класса: , методы которых будут
  * реализовывать сортировку объектов.
- * Предусмотрен единый интерфейс: FullComparator для классов сортировки SortCollections и SortArrays.
+ * Предусмотрен единый интерфейс: FullComparator для классов сортировки
  * Реализована сортировка этого массива по правилам:
  * - первые идут мужчины
  * - выше в списке тот, кто более старший
  * - имена сортируются по алфавиту
  * Программа выводит на экран отсортированный список и время работы каждого алгоритма сортировки в классах
- * SortCollections и SortArrays.
  * Предусмотренна генерация исходного массива (10000 элементов и более).
  * Если имена людей и возраст совпадают, выбрасывается пользовательское исключение.
  */
@@ -23,13 +22,11 @@ public class Main {
      *
      * @param args принимаемый параметр массив String
      */
-    public static void main(String[] args) {
-        try {
-            Person[] massiv = Massiv.generate(50);
-            SortCollections.sort(massiv);
-            SortArrays.sort(massiv);
-        } catch (PersonException e) {
-            System.out.println("В сгенерированном массиве есть одинаковые элементы! Попробуйте еще раз");
-        }
+    public static void main(String[] args) throws PersonException {
+            BubbleSort bubble = new BubbleSort();
+            SelectionSort select = new SelectionSort();
+            Person[] massiv = Massiv.generate(10);
+            select.sort(massiv);
+            bubble.sort(massiv);
     }
 }

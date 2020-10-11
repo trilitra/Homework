@@ -3,7 +3,7 @@ package ru.unnopolis.university.homework.task01.Spisok;
 import java.util.Comparator;
 
 /**
- * Компаратор созданный для классов SortArrays  и SortCollections
+ * Компаратор созданный для классов
  */
 public class FullComparator implements Comparator<Person> {
     /**
@@ -15,7 +15,7 @@ public class FullComparator implements Comparator<Person> {
      * @return возвращает результат сравнения
      */
     @Override
-    public int compare(Person person1, Person person2) {
+    public  int compare(Person person1, Person person2) {
 
         int sexCompare = person1.getSex().compareTo(person2.getSex());
         int ageCompare = Integer.valueOf(person2.getAge()).compareTo(person1.getAge());

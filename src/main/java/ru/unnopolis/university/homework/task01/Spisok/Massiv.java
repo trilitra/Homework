@@ -27,16 +27,6 @@ class Massiv {
             String sex = listSex.get(rand.nextInt(listSex.size()));
             massiv[i] = new Person(name, (int) (Math.random() * 100), sex);
         }
-        for (int i = 0; i < massiv.length; i++) {
-            for (int j = i + 1; j < massiv.length; j++) {
-                if (massiv[i].getAge() == massiv[j].getAge()
-                        & (massiv[i].getName()).equals(massiv[j].getName())
-                        & (massiv[i].getSex()).equals(massiv[j].getSex())) {
-                    throw new PersonException(" ");
-                }
-            }
-
-        }
         return massiv;
     }
 }
