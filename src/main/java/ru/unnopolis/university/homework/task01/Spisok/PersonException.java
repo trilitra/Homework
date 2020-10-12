@@ -1,7 +1,7 @@
 package ru.unnopolis.university.homework.task01.Spisok;
 
 /**
- * Ошибка созданная для ситуации возникающей в классе Massiv(метод generate)
+ * Ошибка, возникающая ри создании дубликатов объектов Person
  */
 class PersonException extends Exception {
     PersonException(String message) {

@@ -11,14 +11,14 @@ import java.util.Scanner;
 public class Generator {
 
     /**
-     * Главный метод, вызывающий другие методы для выполнения задачи класса
+     * Точка входа в программу
      *
      * @param args принимаемый параметр массив String
      */
     public static void main(String[] args) {
-        int[] array = getLengthEmptyArray();
-        fillingArray(array);
-        checkArray(array);
+        int[] emptyArray = getEmptyArray();
+        int[] fullArray = getFullArray(emptyArray);
+        checkArray(fullArray);
     }
 
     /**
@@ -28,7 +28,7 @@ public class Generator {
      *
      * @return возвращает "пустой" сгенерированный массив чисел
      */
-    private static int[] getLengthEmptyArray() {
+    private static int[] getEmptyArray() {
         System.out.println("Введите количество чисел, которое хотите сгенерировать");
         int[] array = new int[0];
         try {
@@ -48,7 +48,7 @@ public class Generator {
      * @param array принимает "пустой" массив заданной пользователем длины для заполнения
      * @return возвращает массив, заполненный  рандомно сгенерированными числами
      */
-    private static int[] fillingArray(int[] array) {
+    private static int[] getFullArray(int[] array) {
         for (int i = 0; i < array.length; i++) {
             array[i] = (int) (Math.random() * (200 + 1) - 100);
             try {
@@ -56,7 +56,7 @@ public class Generator {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                System.out.println("Было сгенерировано отрицательное число!");
+                System.out.println("Было сгенерировано отрицательное число! Квадратный корень вычислить нельзя");
             }
         }
         return array;
@@ -69,7 +69,7 @@ public class Generator {
      * @param array принимает массив, заполненный  рандомно сгенерированными числами
      */
     private static void checkArray(int[] array) {
-        for (int i : array) {
+        for (int i = 0; i < array.length; i++) {
             double b = Math.sqrt(array[i]);
             long a = (long) b;
             if (array[i] == (a * a)) {

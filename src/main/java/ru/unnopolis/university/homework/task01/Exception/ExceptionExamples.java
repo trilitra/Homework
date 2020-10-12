@@ -5,18 +5,16 @@ package ru.unnopolis.university.homework.task01.Exception;
  * пользовательскую ошибку MyCustomNameSampleException
  */
 public class ExceptionExamples {
-    private static String s = null;
-    private static int n = 11;
 
     /**
-     * Главный метод, необходмый для запуска методов вызывающих ошибки
+     * Точка входа в программу
      *
      * @param args принимаемый параметр массив String
      */
     public static void main(String[] args) throws MyCustomNameSampleException {
-        getNPE(s);
-        getArrayIndexOutOfBoundsException(n);
-        getMyCustomNameSampleException(s);
+        getNPE(null);
+        getArrayIndexOutOfBoundsException(11);
+        getMyCustomNameSampleException(null);
     }
 
     /**

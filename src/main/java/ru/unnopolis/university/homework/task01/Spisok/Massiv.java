@@ -13,9 +13,8 @@ class Massiv {
      *
      * @param length принимает переменную, которая задает длину генерируемого массива
      * @return massiv возвращает сгенерированный массив заданной длины
-     * @throws PersonException пробрасывает исключение в клас Main если генерируются абсолютно одинаковые объекты Person
      */
-    static Person[] generate(int length) throws PersonException {
+    static Person[] generate(int length){
         Random rand = new Random();
         List<String> listName = Arrays.asList("Александр(a)", "Евгений(я)", "Валентин(а)", "Влад(а)", "Виктор(ия)",
                 "Антон(ина)", "Ярослав(а)", "Ян(а)", "Валерий(я)", "Василий(иса)", "Альберт(ина)", "Ангел(ина)",

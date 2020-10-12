@@ -6,41 +6,39 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Класс реализующий сортировку Collections.sort и выводящий в консоль время работы алгоритма сортировки,
- * а также отсортированный массив объектов класса Person
+ * Класс реализующий сортировку методм вставки
  */
-class SelectionSort implements sortContract{
+class SelectionSort implements SortContract {
     /**
-     * Метод в котором реализуется сортировка Collections.sort, вывод в консоль отсортированного массива объектов
-     * класса Person и замер времени работы алгоритма сортировки
+     * Метод в котором реализуется сортировка методом сортировки Selection
+     * выводит в консоль отсортированный массив объектов класса Person
      *
      * @param massiv принимает для сортировки массив объектов класса Person
      */
+
     @Override
-    public void sort(Person[] massiv) {
+    public void sort(Person[] massiv) throws PersonException {
 
-        long startTime = System.currentTimeMillis();
-
-        for (int left = 0; left < massiv.length; left++) {
-
-            Person value = massiv[left];
-            int i = left - 1;
-            FullComparator com = new FullComparator();
-            for (; i >= 0; i--) {
-                if (com.compare(massiv[i], massiv[left]) == 0) {
-                    massiv[i + 1] = massiv[i];
-                } else {
-                    break;
+        Person temp;
+        Person min;
+        FullComparator comparator = new FullComparator();
+        for (int i = 0; i < massiv.length; i++) {
+            min = massiv[i];
+            int minId = i;
+            for (int j = i + 1; j < massiv.length; j++) {
+                if (comparator.compare(massiv[minId], massiv[j]) > 0) {
+                    min = massiv[j];
+                    minId = j;
+                } else if(comparator.compare(massiv[minId], massiv[j]) == 0){
+                    throw new PersonException("\nВ сгенерированном массиве  есть дубликаты!");
                 }
             }
-            massiv[i + 1] = value;
+            temp = massiv[i];
+            massiv[i] = min;
+            massiv[minId] = temp;
         }
-
-
-        long endTime = System.currentTimeMillis();
-        long delta = endTime - startTime;
-
-        System.out.println("Время выполнения сортировки методом вставки = " + delta + " milliseconds");
-
+        for (Person i : massiv) {
+            System.out.println(i);
+        }
     }
 }

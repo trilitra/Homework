@@ -1,45 +1,35 @@
 package ru.unnopolis.university.homework.task01.Spisok;
 
 /**
- * Класс реализующий сортировку Arrays.sort и выводящий в консоль время работы алгоритма сортировки
+ * Класс реализующий сортировку методом пузырьков
  */
 
-class BubbleSort implements sortContract {
+class BubbleSort implements SortContract {
     /**
-     * Метод в котором реализуется сортировка Arrays.sort, и замер времени работы алгоритма сортировки
+     * Метод в котором реализуется сортировка методом Bubble
+     *выводит в консоль отсортированный массив объектов класса Person
      *
      * @param massiv принимает для сортировки массив объектов класса Person
      */
     @Override
-    public void sort(Person[] massiv) {
+    public void sort(Person[] massiv) throws PersonException {
 
-        long startTime = System.currentTimeMillis();
-        try {
-            Person temp;
-            for (int j = 0; j < massiv.length; j++) {
-                for (int i = j + 1; i < massiv.length; i++) {
-                    FullComparator comparator = new FullComparator();
-                    if (comparator.compare(massiv[i], massiv[j]) < 0) {
-                        temp = massiv[j];
-                        massiv[j] = massiv[i];
-                        massiv[i] = temp;
-                    } else {
-                        if (comparator.compare(massiv[i], massiv[j]) == 0) {
-                            System.out.println(i);
-                            throw new PersonException(" ");
-                        }
-                    }
+        Person temp;
+        FullComparator comparator = new FullComparator();
+        for (int j = 0; j < massiv.length; j++) {
+            for (int i = j + 1; i < massiv.length; i++) {
+                if (comparator.compare(massiv[i], massiv[j]) < 0) {
+                    temp = massiv[j];
+                    massiv[j] = massiv[i];
+                    massiv[i] = temp;
+                }else if (comparator.compare(massiv[i], massiv[j]) == 0){
+                    throw new PersonException("\nВ сгенерированном массиве есть дубликаты!");
                 }
             }
-        } catch (PersonException e) {
-            System.out.println("В сгенерированном массиве есть одинаковые элементы! Попробуйте еще раз");
         }
+        System.out.println("\n");
         for (Person i : massiv) {
             System.out.println(i);
         }
-
-        long endTime = System.currentTimeMillis();
-        long delta = endTime - startTime;
-        System.out.println("Время выполнения сортировки методом пузырька = " + delta + " milliseconds");
     }
 }
