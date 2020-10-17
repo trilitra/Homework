@@ -3,7 +3,7 @@ package ru.unnopolis.university.homework.task02;
 import java.util.ArrayList;
 
 /**
- * Класс для работы  c объектами класса Object.
+ * Класс для работы  c объектами класса Object
  */
 public class ObjectBox {
     public ArrayList<Object> list;

@@ -26,7 +26,7 @@ package ru.unnopolis.university.homework.task02;
 
 public class Main {
     /**
-     * Точка входа в программу
+     * Точка входа в программу.
      *
      * @param args принимаемый параметр массив строк
      */
