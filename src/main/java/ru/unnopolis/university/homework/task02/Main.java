@@ -40,21 +40,19 @@ public class Main {
     private static void startApp() {
 
         Number[] array = getNumberArray(); // Генерируем массив чисел разных примитивных типов
-
-        MathBox number = new MathBox(array); // Вызываем конструктор класса MathBox, передаем  сгенерированный массив
-        MathBox.summator(number.list); // Вычисляем сумму элементов массива - параметра объекта number класса MathBox
-        MathBox.remove(number.list, 4); //Удаляем указанный элемент массива
-        MathBox.splitter(number.list,  2); //Делим элементы массива на указанный делитель, результат фиксируем
-
+        MathBox<Number> number = new MathBox<>(array); // Вызываем конструктор класса MathBox, передаем  сгенерированный массив
+        MathBox.summator();
+        MathBox.set.remove((long) 4);
+        System.out.println("Коллекция после удаления элемента: " + number.set + "\n");
+        MathBox.splitter(2.0);
 
         Object[] arrayObject = getObjectArray();// Генерируем массив Object
-
-        ObjectBox object = new ObjectBox(arrayObject);// Вызываем конструктор класса ObjectBox, передаем  сгенерированный массив
-        ObjectBox.addObject(object.list,  2); // Добавляем элемент в массив
-        ObjectBox.deleteObject(object.list,  2);// Удаляем элемент массива
-        ObjectBox.dump(object.list); // Выводим массив в строчку
-        MathBox.summator(object.list);// Генерация исключения
-
+        ObjectBox object = new ObjectBox(arrayObject);// Вызываем конструктор класса ObjectBox,передаем  сгенерированный массив
+        ObjectBox.set.add(2);
+        System.out.println("Коллекция после добавления элемента: " + object + "\n");
+        ObjectBox.set.remove(2);
+        System.out.println("Коллекция после удаления элемента: " + object + "\n");
+        MathBox<Number> number2 = new MathBox<>((Number[]) arrayObject);// Генерация исключения
     }
 
     /**
@@ -63,14 +61,15 @@ public class Main {
      * @return возвращаем массив Number
      */
     private static Number[] getNumberArray() {
-        Number[] array = new Number[7];
-        array[0] = (short) 4;
+        Number[] array = new Number[8];
+        array[0] = (short) 5;
         array[1] = (byte) -2;
         array[2] = (long) 4;
         array[3] = (float) 1.4;
         array[4] = (double) 1;
         array[5] = (byte) -2;
-        array[6] = (int) 4.0;
+        array[6] = (int) 6.0;
+        array[7] = (int) 6.0;
         return array;
     }
 
