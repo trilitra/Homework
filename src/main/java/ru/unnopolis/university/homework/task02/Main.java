@@ -1,8 +1,8 @@
 package ru.unnopolis.university.homework.task02;
 
 /**
- *Задание 1. Написать класс MathBox, реализующий следующий функционал:
- *
+ * Задание 1. Написать класс MathBox, реализующий следующий функционал:
+ * <p>
  * Конструктор на вход получает массив Number. Элементы не могут повторяться. Элементы массива внутри объекта
  * раскладываются в подходящую коллекцию (выбрать самостоятельно).
  * Существует метод summator, возвращающий сумму всех элементов коллекции.
@@ -12,13 +12,13 @@ package ru.unnopolis.university.homework.task02;
  * для вывода данных на экран и хранение объектов этого класса в коллекциях (например, hashMap).
  * Выполнение контракта обязательно!
  * Создать метод, который получает на вход Integer и если такое значение есть в коллекции, удаляет его.
- *
+ * <p>
  * Задание 2. Создать класс ObjectBox, который будет хранить коллекцию Object.
  * У класса должен быть метод addObject, добавляющий объект в коллекцию.
  * У класса должен быть метод deleteObject, проверяющий наличие объекта в коллекции и при наличии удаляющий его.
  * Должен быть метод dump, выводящий содержимое коллекции в строку.
- *
- *
+ * <p>
+ * <p>
  * Задание 3. Доработать классы MathBox и ObjectBox таким образом, чтобы MathBox был наследником ObjectBox.
  * Необходимо сделать такую связь, правильно распределить поля и методы. Функциональность в целом должна сохраниться.
  * При попытке положить Object в MathBox должно создаваться исключение.
@@ -40,17 +40,17 @@ public class Main {
     private static void startApp() {
 
         Number[] array = getNumberArray(); // Генерируем массив чисел разных примитивных типов
-        MathBox<Number> number = new MathBox<>(array); // Вызываем конструктор класса MathBox, передаем  сгенерированный массив
-        MathBox.summator();
-        MathBox.set.remove((long) 4);
-        System.out.println("Коллекция после удаления элемента: " + number.set + "\n");
-        MathBox.splitter(2.0);
+        MathBox<Number> number = new MathBox<>(array);// Вызываю конструктор класса MathBox, передаем  сгенерированный массив
+        number.summator();//Суммирую все элементы коллекции
+        number.getSet().remove((long) 4);//Удаляю эелемент коллекции
+        System.out.println("Коллекция после удаления элемента: " + number.getSet() + "\n");
+        number.splitter(2.0);//Перезаписываю коллекцию элементами из исходной коллекции поделенными на  переданный аргумент
 
         Object[] arrayObject = getObjectArray();// Генерируем массив Object
         ObjectBox object = new ObjectBox(arrayObject);// Вызываем конструктор класса ObjectBox,передаем  сгенерированный массив
-        ObjectBox.set.add(2);
+        object.getSet().add(2);//Добавляю элемент в коллекцию
         System.out.println("Коллекция после добавления элемента: " + object + "\n");
-        ObjectBox.set.remove(2);
+        object.getSet().remove(2);//Удаляю элемент из коллекции
         System.out.println("Коллекция после удаления элемента: " + object + "\n");
         MathBox<Number> number2 = new MathBox<>((Number[]) arrayObject);// Генерация исключения
     }
@@ -80,9 +80,9 @@ public class Main {
      */
     private static Object[] getObjectArray() {
         Object[] arrayObject = new Object[3];
-        arrayObject[0] =  "ss";
+        arrayObject[0] = "ss";
         arrayObject[1] = (double) -2;
-        arrayObject[2] =  new Object();
+        arrayObject[2] = new Object();
         return arrayObject;
     }
 
