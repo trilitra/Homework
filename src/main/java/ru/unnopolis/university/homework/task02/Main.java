@@ -35,7 +35,7 @@ public class Main {
     }
 
     /**
-     * Выполнения основных методов
+     * Выполнение основных методов
      */
     private static void startApp() {
 
