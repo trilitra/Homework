@@ -25,7 +25,7 @@ public class GeneratorFileText {
     private static final String punctuation = "!.?";
 
     public static void main(String[] args) {
-        getFiles("C:\\Users\\efano\\IdeaProjects\\Homework", 3, 300, 10);
+        getFiles("./", 3, 300, 10);
     }
 
     /**
@@ -38,7 +38,6 @@ public class GeneratorFileText {
      * @param probability вероятность включения слова из исходного массива слов в создаваемые файлы (1/probability)
      */
     private static void getFiles(String path, int n, int size, int probability) {
-
         for (int i = 0; i < n; i++) {
             File file = new File(path, "TextFile" + i + ".txt");
             try (FileWriter writer = new FileWriter(file)) {
@@ -54,7 +53,6 @@ public class GeneratorFileText {
     }
 
     private static String getText(Integer probability) {
-
         int length = random.nextInt(20) + 1;
         StringBuilder text = new StringBuilder(length);
         for (int i = 0; i < length; i++) {
@@ -100,10 +98,7 @@ public class GeneratorFileText {
         int positionUpper = random.nextInt(26);
         word.append(upper.charAt(positionUpper));
 
-        for (int i = 0; i < length; i++) {
-            int position = random.nextInt(26);
-            word.append(lower.charAt(position));
-        }
+        cycleForWord(length, word);
         boolean val = random.nextInt(10) == 0;
         if (val) {
             word.append(",");
@@ -118,10 +113,7 @@ public class GeneratorFileText {
         int length = random.nextInt(15) + 1;
         StringBuilder word = new StringBuilder(length);
 
-        for (int i = 0; i < length; i++) {
-            int position = random.nextInt(26);
-            word.append(lower.charAt(position));
-        }
+        cycleForWord(length, word);
         int positionUpper = random.nextInt(3);
         word.append(punctuation.charAt(positionUpper));
         word.append(" ");
@@ -133,16 +125,19 @@ public class GeneratorFileText {
 
         int length = random.nextInt(15) + 1;
         StringBuilder word = new StringBuilder(length);
-
-        for (int i = 0; i < length; i++) {
-            int position = random.nextInt(26);
-            word.append(lower.charAt(position));
-        }
+        cycleForWord(length, word);
         boolean val = random.nextInt(10) == 0;
         if (val) {
             word.append(",");
         }
         word.append(" ");
         return new String(word);
+    }
+
+    private static void cycleForWord(int length, StringBuilder word) {
+        for (int i = 0; i < length; i++) {
+            int position = random.nextInt(26);
+            word.append(lower.charAt(position));
+        }
     }
 }
