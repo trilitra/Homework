@@ -5,7 +5,6 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.sun.xml.internal.ws.util.VersionUtil.compare;
 
 /**
  * Задание 1. Написать программу, читающую текстовый файл. Программа должна составлять отсортированный по алфавиту
