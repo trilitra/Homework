@@ -1,6 +1,9 @@
 package ru;
 
 import java.math.BigInteger;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 
 /**
  * Дан массив случайных чисел. Написать программу для вычисления факториалов всех элементов массива. Использовать пул
@@ -21,28 +24,34 @@ import java.math.BigInteger;
  * что будет гораздо быстрее
  */
 public class Factorial {
-    static final Integer[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    private static final int numberOfTreads = array.length;
+    public Integer[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    private ExecutorService threadPool;
+    private ThreadFactory threadFactory;
 
     public static void main(String[] args) {
-        runThreads();
+        Factorial factorial = new Factorial();
+        factorial.runThreadsPool();
     }
 
     /**
      * Метод для создания и запуска пула потоков
      */
 
-    public static void runThreads() {
+    public void runThreadsPool() {
+        threadFactory = Thread::new;
+        threadPool = Executors.newFixedThreadPool(getAvialableCountTread(), threadFactory);
+        Runnable threadsFactorial = new ThreadsFactorial(array);
+        threadPool.execute(threadsFactorial);
+        threadPool.shutdown();
+    }
 
-        for (int i = 0; i < numberOfTreads; i++) {
-            Runnable threadsFactorial = new ThreadsFactorial(array[i]);
-            Thread thread = new Thread(threadsFactorial);
-            thread.start();
-        }
+    private int getAvialableCountTread() {
+        return Runtime.getRuntime().availableProcessors() * 2;
     }
 
     /**
      * Метод для расчета факториала
+     *
      * @param i передаваемый аргумент число, для которого необходимо высчитать факториал
      * @return возвращаемый параметр - факториал
      */
@@ -53,21 +62,22 @@ public class Factorial {
         }
         return f;
     }
-}
 
+}
 class ThreadsFactorial implements Runnable {
 
-    private int numberOfArray;
+    private Integer[] array;
 
-    public ThreadsFactorial(int numberOfArray) {
-        this.numberOfArray = numberOfArray;
+    public ThreadsFactorial(Integer[] array) {
+        this.array = array;
     }
-
     @Override
     public void run() {
         BigInteger f;
-        f = Factorial.factorial(numberOfArray);
-        System.out.println("Факториал " + numberOfArray + " равен " + f);
+        for (int i = 0; i < array.length; i++) {
+            f = Factorial.factorial(i);
+            System.out.println("Факториал " + array[i] + " равен " + f);
+        }
     }
 }
 
