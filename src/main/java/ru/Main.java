@@ -31,10 +31,11 @@ public class Main {
         JavacCreate();
         object.demoMyObj();
 
+
     }
 
     private static void JavacCreate() throws IOException, InterruptedException {
-        Process proc = Runtime.getRuntime().exec("javac ./target/classes/ru/SomeClass.java");
+        Process proc = Runtime.getRuntime().exec("javac ./SomeClass.java");
         proc.waitFor();
         proc.destroy();
     }
@@ -43,11 +44,10 @@ public class Main {
             throws IllegalAccessException, NoSuchMethodException, InvocationTargetException, ClassNotFoundException,
             InstantiationException {
         MyClassLoader myClassLoader = new MyClassLoader();
-        final Class<?> targetClass = Class.forName("ru.SomeClass", true, myClassLoader);
+        final Class<?> targetClass = Class.forName("SomeClass", true, myClassLoader);
         Object object = targetClass.newInstance();
-        SomeClass myObject = (SomeClass) object;
         final Method setNewDoWork = targetClass.getDeclaredMethod("doWork");
-        setNewDoWork.invoke(myObject);
+        setNewDoWork.invoke(object);
 
     }
 }
