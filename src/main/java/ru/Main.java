@@ -12,7 +12,6 @@ import java.lang.reflect.Method;
  * {
  * void doWork();
  * }
- *
  * Необходимо написать программу, выполняющую следующее:
  *
  * Программа с консоли построчно считывает код метода doWork. Код не должен требовать импорта дополнительных классов.
@@ -24,21 +23,20 @@ import java.lang.reflect.Method;
  */
 public class Main {
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException, InvocationTargetException,
+            NoSuchMethodException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         Consol consol = new Consol();
         Main object = new Main();
         consol.reader();
-        Process proc = Runtime.getRuntime().exec("javac C:\\Users\\efano\\IdeaProjects\\Homework\\target\\classes\\ru\\SomeClass.java");
+        JavacCreate();
+        object.demoMyObj();
+
+    }
+
+    private static void JavacCreate() throws IOException, InterruptedException {
+        Process proc = Runtime.getRuntime().exec("javac ./target/classes/ru/SomeClass.java");
         proc.waitFor();
         proc.destroy();
-
-        try {
-            object.demoMyObj();
-        } catch
-        (IllegalAccessException | NoSuchMethodException | InvocationTargetException | ClassNotFoundException |
-                        InstantiationException e) {
-            e.getMessage();
-        }
     }
 
     private void demoMyObj()
