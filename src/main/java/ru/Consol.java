@@ -2,6 +2,9 @@ package ru;
 
 import java.io.*;
 
+/**
+ * Метод для записи введенного в консоль кода в метод doWork() класса SomeClass
+ */
 public class Consol {
     public  void reader() {
         System.out.println("Введите код метода doWork");

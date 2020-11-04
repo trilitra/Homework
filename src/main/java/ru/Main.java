@@ -34,12 +34,25 @@ public class Main {
 
     }
 
+    /**
+     * Метод для выполнения команды  JVM "javac" для класса SomeClass
+     * @throws IOException
+     * @throws InterruptedException
+     */
     private static void JavacCreate() throws IOException, InterruptedException {
         Process proc = Runtime.getRuntime().exec("javac ./SomeClass.java");
         proc.waitFor();
         proc.destroy();
     }
 
+    /**
+     * Метод для вызова метода doWork() класса SomeClass используя кастомный загрузчик классов MyClassLoader
+     * @throws IllegalAccessException
+     * @throws NoSuchMethodException
+     * @throws InvocationTargetException
+     * @throws ClassNotFoundException
+     * @throws InstantiationException
+     */
     private void demoMyObj()
             throws IllegalAccessException, NoSuchMethodException, InvocationTargetException, ClassNotFoundException,
             InstantiationException {
