@@ -23,6 +23,7 @@ public class Consol {
         }
         catch(IOException ex){
             System.out.println(ex.getMessage());
+
         }
     }
 }
