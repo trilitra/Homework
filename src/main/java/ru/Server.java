@@ -1,32 +1,36 @@
 package ru;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+import java.util.regex.Pattern;
 
+/**
+ * В классе Server и подклассе Connection релизована следующая логика выполнения действий программы:
+ * В методе Server() создаем сервер на порту переданному в метод как аргумент с помощью java класса ServerSocket.
+ * Также в этом методе программа принимает подключения и запускает поток класса Сonnection для работы с принимаемым
+ * в качестве аргумента с каждым новым подключением. Класс Connection принимает сообщение от пользователя и рассылает
+ * сообщение всем другим подключениям или только одному выбранному пользователем подключению (личное сообщение).
+ * Рассылка сообщения и выбор адресатов для рассылки происходит в методе createMessages() класса Connection.
+ * Для закрытия потоков и подключений реализованы методы closeAll() и close().
+ */
 public class Server {
-    private  final List<Connection> connections = Collections.synchronizedList(new ArrayList<>());
+    private static Connection connection;
+    private HashMap<String, Connection> connections = new HashMap<>();
     private ServerSocket server;
+    public static final int port = 8283;
 
     @SuppressWarnings("InfiniteLoopStatement")
     public Server() {
 
         try {
-            server = new ServerSocket(Constant.port);
+            server = new ServerSocket(port);
 
             while (true) {
                 Socket socket = server.accept();
-
-                Connection con = new Connection(socket);
-                connections.add(con);
-                con.start();
+                connection = new Connection(socket);
+                connection.start();
 
             }
         } catch (IOException e) {
@@ -40,23 +44,20 @@ public class Server {
         try {
             server.close();
 
-            synchronized (connections) {
-                Iterator<Connection> iter = connections.iterator();
-                while (iter.hasNext()) {
-                    iter.next().close();
-                }
+            for (Map.Entry<String, Connection> entry : connections.entrySet()) {
+                Connection value = entry.getValue();
+                value.close();
             }
         } catch (Exception e) {
             e.getStackTrace();
         }
     }
 
-
     private class Connection extends Thread {
         private BufferedReader in;
         private PrintWriter out;
         private Socket socket;
-
+        private List<String> list = new ArrayList<>();
         private String name = "";
 
         public Connection(Socket socket) {
@@ -75,28 +76,44 @@ public class Server {
         public void run() {
             try {
                 name = in.readLine();
+                connections.put(name, Server.connection);
 
-                for (Connection c : connections) {
-                    c.out.println(name + " зашел в чат");
+                for (Map.Entry<String, Connection> entry : connections.entrySet()) {
+                    Connection value = entry.getValue();
+                    value.out.println(name + " зашел в чат");
                 }
-
-                String str;
-                while (true) {
-                    str = in.readLine();
-                    if (str.equals("quit")) break;
-
-                    for (Connection c : connections) {
-                        c.out.println(name + ": " + str);
-                    }
-                }
-
-                for (Connection c : connections) {
-                    c.out.println(name + " покинул чат");
-                }
+                createMessages();
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
                 close();
+            }
+        }
+
+        private void createMessages() throws IOException {
+            String str;
+
+            while (true) {
+                str = in.readLine();
+
+                Pattern p = Pattern.compile("=");
+                String[] array = p.split(str);
+                if (connections.containsKey(array[0])) {
+                    Connection value = connections.get(array[0]);
+                    value.out.println("Личное сообщение от " + name + ": " + array[1]);
+                    createMessages();
+                }
+
+                if (str.equals("quit")) break;
+
+                for (Map.Entry<String, Connection> entry : connections.entrySet()) {
+                    Connection value = entry.getValue();
+                    value.out.println(name + ": " + str);
+                }
+            }
+            for (Map.Entry<String, Connection> entry : connections.entrySet()) {
+                Connection value = entry.getValue();
+                value.out.println(name + " вышел из чата");
             }
         }
 
@@ -117,4 +134,3 @@ public class Server {
         }
     }
 }
-

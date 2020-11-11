@@ -2,11 +2,7 @@ package ru;
 
 import java.util.Scanner;
 
-/**
- * В классе Main выбираем в каком режиме запустить программу - сервера или клиента, посредством запроса у пользователя
- * и считывания его ответа из консоли
- */
-public class Main {
+public class TestConnection3 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
