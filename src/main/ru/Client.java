@@ -1,4 +1,4 @@
-package ru;
+package task07;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,7 +35,7 @@ public class Client {
         System.out.println("Введите IP для подключения к серверу");
         System.out.println("Формат: xxx.xxx.xxx.xxx");
         String ip = scan.nextLine();
-        System.out.println("Команда для отправки личного сообщения \"NickName=\"пробел\" и текст сообщения\"");
+        System.out.println("Команда для отправки личного сообщения \"NickName= текст сообщения\"");
 
         try {
             socket = new Socket(ip, Server.port);

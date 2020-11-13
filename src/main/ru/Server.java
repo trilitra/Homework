@@ -1,4 +1,4 @@
-package ru;
+package task07;
 
 import java.io.*;
 import java.net.ServerSocket;

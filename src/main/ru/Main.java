@@ -1,8 +1,12 @@
-package ru;
+package task07;
 
 import java.util.Scanner;
 
-public class TestConnection1 {
+/**
+ * В классе Main выбираем в каком режиме запустить программу - сервера или клиента, посредством запроса у пользователя
+ * и считывания его ответа из консоли
+ */
+public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
